@@ -1,0 +1,254 @@
+<!-- HTML -->
+
+<!-- <p>Count: <input id="count" value="5"></p> -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="Indexer">
+
+  <div class="Feature">
+
+    <div class="card" id="PageLinks">
+      <span class="material-icons">play_arrow</span>
+      <h1>Get Index Of <br>All Pages</h1>
+    </div>
+
+    <div class="card" id="AllPagesFrameLinks">
+      <span class="material-icons">play_arrow</span>
+      <h1>Get Index Of <br>All Links</h1>
+    </div>
+
+  </div>
+
+  <div class="Feature">
+
+    <div class="card" id="AllFrameLinks">
+      <span class="material-icons">play_arrow</span>
+      <h1>Get Index Of <br>This Page’s Frames</h1>
+    </div>
+
+    <div class="card" id="SelectedFrameLinks">
+      <span class="material-icons">play_arrow</span>
+      <h1>Get Index Of <br>Selected Elements</h1>
+    </div>
+
+  </div>
+
+  <div class="hr"></div>
+
+  <div class="SPCard">
+    <div class="header1" id="ConditionalLinks">
+      <h1>Get Index Of Frames With These Conditions</h1>
+      <span class="material-icons">play_arrow</span>
+    </div>
+    <div class="BothConditions">
+      <div class="Condition">
+        <input type="checkbox" id="IsWidthSelected" class="cx1" value="W1">
+        <p>Width:</p>
+        <input class="tx" id="SelectedWidth" value="128">
+      </div>
+      <div class="Condition">
+        <input class="cx2" type="checkbox" id="IsHeightSelected" value="H1">
+        <p>Height:</p>
+        <input class="tx" id="SelectedHeight" value="128">
+      </div>
+    </div>
+  </div>
+
+  <div class="Details">
+    <p>Create Easy To Guide Indexes</p>
+    <p>Made By <a href="https://www.figma.com/@sriram" target="_blank">Sriram Boppana</a></p>
+
+    <!-- <p>Made By <a href="https://www.sriramboppana.com/" target="_blank">Sriram Boppana</a></p> -->
+
+  </div>
+</div>
+
+<!-- JS -->
+
+<script>
+  document.getElementById('PageLinks').onclick = () => {
+    parent.postMessage({pluginMessage: { type: 'PageLinks'}}, '*')
+  }
+  document.getElementById('AllPagesFrameLinks').onclick = () => {
+    parent.postMessage({pluginMessage: { type: 'AllPagesFrameLinks'}}, '*')
+  }
+  document.getElementById('AllFrameLinks').onclick = () => {
+    parent.postMessage({pluginMessage: { type: 'AllFrameLinks'}}, '*')
+  }
+  document.getElementById('SelectedFrameLinks').onclick = () => {
+    parent.postMessage({pluginMessage: { type: 'SelectedFrameLinks'}}, '*')
+  }
+
+  document.getElementById('ConditionalLinks').onclick = () => {
+    const textboxW = document.getElementById('SelectedWidth');
+    const SelectedWidth = parseInt(textboxW.value);
+    
+    const textboxH = document.getElementById('SelectedHeight');
+    const SelectedHeight = parseInt(textboxH.value);
+
+    const checkW = document.getElementById('IsWidthSelected')
+    var IsWidthSelected = checkW.checked;
+
+    const checkH = document.getElementById('IsHeightSelected')
+    var IsHeightSelected = checkH.checked;
+    
+    parent.postMessage({ pluginMessage: { type: 'ConditionalLinks', SelectedWidth, SelectedHeight, IsWidthSelected, IsHeightSelected}}, '*')
+  }
+
+</script>
+
+
+<!-- CSS -->
+
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    font-family: "Avenir Next", Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .material-icons {
+    font-size: 24px;
+    color: #0075FC;
+  }
+
+  .card .material-icons {
+    margin-left: -6px;
+    margin-top: -4px;
+  }
+
+
+  .Indexer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    gap: 24px;
+    /* width: 384px;
+    height: 400px; */
+    background: #FFFFFF;
+  }
+
+  .Feature {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+    width: 336px;
+    height: 80px;
+  }
+
+  .card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 12px 10px 12px;
+    width: 156px;
+    height: 80px;
+    /* Others / White */
+    background: #FFFFFF;
+    /* Neutrals / N 05 */
+    border: 1px solid #C8D1E5;
+    box-sizing: border-box;
+    border-radius: 12px;
+  }
+
+  .card h1 {
+    width: 132px;
+    height: 38px;
+    color: #030A19;
+    align-self: stretch;
+    margin: 8px 0px;
+  }
+
+  .hr {
+    width: 336px;
+    height: 1px;
+    /* Neutrals / N 05 */
+    background: #C8D1E5;
+    border-radius: 16px;
+  }
+
+  .SPCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    gap: 16px;
+    width: 336px;
+    height: 80px;
+    background: #FFFFFF;
+    border: 1px solid #C8D1E5;
+    box-sizing: border-box;
+    border-radius: 12px;
+  }
+
+  .header1 {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    width: 312px;
+    height: 16px;
+  }
+
+  .BothConditions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 16px;
+    width: 312px;
+    height: 24px;
+  }
+
+  .Condition {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+    width: 148px;
+    height: 24px;
+    font-weight: 400;
+  }
+
+  .Condition .tx {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 4px 4px 4px 8px;
+
+    width: 86px;
+    height: 24px;
+    /* Others / White */
+    background: #FFFFFF;
+    /* Neutrals / N 05 */
+    border: 1px solid #C8D1E5;
+    box-sizing: border-box;
+    border-radius: 6px;
+  }
+
+  .Details {
+    width: 336px;
+    height: 16px;
+    display: flex;
+    justify-content: space-between;
+    color: #99A8CC;
+    font-weight: 400;
+  }
+
+input:focus{
+  outline: 0 solid #0075FC;
+  box-shadow: 0px 0px 0px 2px #0075FC;
+}
+
+</style>
